@@ -10,7 +10,6 @@ import UIKit
 
 class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteTableViewCellDelegate {
     
-    
     let noteController = NoteController()
     
     @IBOutlet weak var notesTableView: UITableView!
@@ -28,8 +27,6 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         notesTableView.delegate = self
         notesTableView.dataSource = self
-
-        // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,16 +42,13 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         noteCell.delegate = self
         
         return cell
-        
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NoteDetail" {
             guard let noteDetailVC = segue.destination as? NoteDetailViewController, let cell = sender as? NoteTableViewCell else {return}
             
             noteDetailVC.note = cell.note
-            
         }
     }
     
