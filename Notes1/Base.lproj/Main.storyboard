@@ -105,6 +105,7 @@
                     <navigationItem key="navigationItem" title="Quick Notes" id="bXF-2K-Xs2"/>
                     <connections>
                         <outlet property="notesTableView" destination="TgD-0v-3UY" id="DyY-Yh-QWD"/>
+                        <outlet property="notesTextView" destination="YiV-L8-bwC" id="b8f-zJ-bL2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

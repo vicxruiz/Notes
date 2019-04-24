@@ -13,9 +13,14 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let noteController = NoteController()
     
     @IBOutlet weak var notesTableView: UITableView!
+    @IBOutlet weak var notesTextView: UITextView!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         print("Saved!")
+        guard let text = notesTextView.text, !text.isEmpty else {return}
+        noteController.createNote(text)
+        notesTableView.reloadData()
+        notesTextView.text = ""
     }
     
     override func viewDidLoad() {
