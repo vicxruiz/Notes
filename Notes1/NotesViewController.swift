@@ -8,7 +8,8 @@
 
 import UIKit
 
-class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteTableViewCellDelegate {
+    
     
     let noteController = NoteController()
     
@@ -40,10 +41,30 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard let noteCell = cell as? NoteTableViewCell else {return cell}
         
         let note = noteController.notes[indexPath.row]
-        noteCell.noteLabel.text = note.text
+        noteCell.note = note
+        noteCell.delegate = self
         
         return cell
         
     }
-
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NoteDetail" {
+            guard let noteDetailVC = segue.destination as? NoteDetailViewController, let cell = sender as? NoteTableViewCell else {return}
+            
+            noteDetailVC.note = cell.note
+            
+        }
+    }
+    
+    func shareNote(for cell: NoteTableViewCell) {
+        print("share note to the world")
+        guard let note = cell.note else {return}
+        
+        let text = note.text
+        
+        let activityController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+    }
 }
